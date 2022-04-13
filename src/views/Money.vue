@@ -1,89 +1,8 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
+  <div>
+    <layout>
       <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-      <p>money.vue</p>
-    </div>
-    <Nav/>
+    </layout>
   </div>
 </template>
 
@@ -95,15 +14,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nav-wrapper {
-  border: 1px solid green;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-}
-.content{
-  border: 1px solid blue;
-  overflow: auto;
-  flex-grow: 1;
-}
+
 </style>
