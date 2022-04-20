@@ -1,6 +1,6 @@
 <template>
   <Layout>
-    编辑标签
+    <div>编辑页面</div>
   </Layout>
 </template>
 
@@ -14,7 +14,7 @@
       const id = this.$route.params.id;
       tagListModel.fetch();
       const tags = tagListModel.data;
-      const tag = tags.filter(t => t.id === id)[0];
+      const tag = tags.find(t => t.id === id);
       if (tag){
         console.log(tag);
       }else {
