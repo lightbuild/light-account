@@ -1,7 +1,6 @@
 <template>
   <div>
     <label class="formItem">
-      {{ value }}
       <span class="name">{{ this.fieldName }}</span>
       <input type="text"
              :value="value"
