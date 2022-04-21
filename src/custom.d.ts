@@ -20,4 +20,5 @@ type TagListModel = {
 
 interface Window {
   tagList: Tag[]
-}d
+  createTag:(name:string)=>void
+}
