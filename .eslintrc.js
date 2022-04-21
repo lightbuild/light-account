@@ -12,7 +12,8 @@ module.exports = {
     ecmaVersion: 2020
   },
   globals: {
-    "RecordItem": true
+    "RecordItem": true,
+    "Tag": true,
   },
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
