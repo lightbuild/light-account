@@ -1,3 +1,5 @@
+import createId from '@/lib/createId';
+
 const localStorageKeyName = 'tagList';
 type Tag = {
   id: string;
@@ -41,7 +43,8 @@ const tagListModel: TagListModel = {
     if (names.indexOf(name) >= 0) {
       return 'duplicated';
     }
-    this.data.push({id: name, name: name});
+    const id = createId().toString();
+    this.data.push({id: id, name: name});
     this.save();
     return 'success';
   },
@@ -49,7 +52,6 @@ const tagListModel: TagListModel = {
     const index = this.data.findIndex(item => item.id === id);
     console.log(index)
     if (index !=-1){
-      console.log("数据库here")
       this.data.splice(index,1);
       this.save();
     }

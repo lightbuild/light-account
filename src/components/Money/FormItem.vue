@@ -5,7 +5,7 @@
       <input type="text"
              :value="value"
              @input="onValueChange($event.target.value)"
-             :placeholder="this.placeholder">
+             :placeholder="placeholder">
     </label>
   </div>
 </template>
@@ -20,7 +20,6 @@
     @Prop({required: true}) fieldName!: string;
     @Prop({default: ''}) placeholder!: string;
     
-    @Watch('value')
     onValueChange(value: string) {
       this.$emit('update:value', value);
     }
