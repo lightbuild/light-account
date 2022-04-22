@@ -21,15 +21,16 @@
   @Component({
     computed:{
       tagList(){
-        // return  this.$store.fetchTags();
-        return []
+       return  this.$store.state.tagList;
       }
     }
   })
   export default class Tags extends Vue {
-    
     selectedTags: string[] = [];
-  
+    
+    created(){
+      this.$store.commit('fetchTags')
+    }
     toggle(tag: Tag) {
       const index = this.selectedTags.indexOf(tag.name);
       if (index >= 0) {
@@ -39,13 +40,14 @@
       }
       this.$emit('update:value',this.selectedTags);
     }
-
     create() {
       const name = window.prompt('请输入标签名');
-      if (name === '') {
+      console.log(name);
+      if (name === null){
         return  window.alert('标签名不能为空');
-      } //TODO
-        // store.createTag(name)
+      }else{
+        this.$store.commit('createTag',name)
+      }
     }
   }
 </script>
