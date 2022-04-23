@@ -24,14 +24,11 @@
   
   @Component({
     components: {Button, FormItem},
-    computed:{
-      tag(){
-        return this.$store.state.currentTag
-      }
-    }
   })
   export default class EditLabel extends Vue {
-    tag?: Tag = undefined;
+    get tag(){
+      return this.$store.state.currentTag
+    }
     created() {
       const id = this.$route.params.id;
       this.$store.commit('setCurrentTag',id);
