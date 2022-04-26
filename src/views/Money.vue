@@ -51,7 +51,7 @@
   .note-wrapper {
     padding: 12px 0;
   }
-  .layout-content {
+  ::v-deep .layout-content {
     display: flex;
     flex-direction: column-reverse;
   }
