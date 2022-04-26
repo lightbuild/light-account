@@ -8,8 +8,7 @@
                 placeholder="在这里输入备注"
                 @update:value="onUpdateNotes"/>
     </div>
-    <Tags/>
-<!--    <Tags @update:value="onUpdateValue"/>-->
+    <Tags :value.sync="record.tags"/>
   </Layout>
 </template>
 
@@ -42,17 +41,13 @@
     onUpdateNotes(value: string) {
       this.record.notes = value;
     }
-    //TODO
-    // onUpdateValue(value:string){
-    //   this.record.tags = value;
-    // }
     saveRecord() {
       this.$store.commit('createRecord',this.record)
     }
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .note-wrapper {
     padding: 12px 0;
   }

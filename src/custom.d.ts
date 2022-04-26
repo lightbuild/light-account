@@ -1,10 +1,18 @@
+type RootState = {
+  recordList: RecordItem[],
+  tagList: Tag[],
+  currentTag?: Tag
+}
+
 type RecordItem = {
   tags: string[],
   notes: string,
   type: string,
   amount: number,
-  createdAt?: Date
+  createdAt?: string
 }
+
+
 type Tag = {
   id: string;
   name: string
@@ -19,13 +27,13 @@ type TagListModel = {
 }
 
 interface Window {
-  store:{
+  store: {
     tagList: Tag[];
     createTag: (name: string) => void;
     removeTag: (id: string) => boolean;
     updateTag: TagListModel['update'];
     findTag: (id: string) => Tag;
-    recordList:RecordItem[];
-    createRecord:(record:RecordItem) => void
-  }
+    recordList: RecordItem[];
+    createRecord: (record: RecordItem) => void
+  };
 }
