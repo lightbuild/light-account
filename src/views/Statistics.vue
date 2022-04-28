@@ -2,11 +2,10 @@
   <div>
     <layout>
       <Tabs class-prefix="type" :data-source="typeList" :value.sync="type"/>
-      <Tabs class-prefix="interval" :data-source="intervalList" :value.sync="interval"/>
       <div>
         <ol>
           <li v-for="(group,index) in groupedList" :key="index">
-            <h3 class="title">{{ beautify(group.title) }}<span>￥{{group.total}}</span> </h3>
+            <h3 class="title">{{ beautify(group.title) }}<span>￥{{ group.total }}</span></h3>
             <ol>
               <li class="record" v-for="item in group.items" :key="item.createdAt">
                 <span> {{ tagString(item.tags) }}</span>
@@ -28,15 +27,17 @@
   import intervalList from '@/constants/intervalList';
   import typeList from '@/constants/typeList';
   import dayjs from 'dayjs';
-  import _ from 'lodash/fp';
+  import _ from 'lodash';
+  
   @Component({
     components: {Tabs}
   })
   export default class Statistics extends Vue {
     type = '-';
-    interval = 'day';
-    intervalList = intervalList;
     typeList = typeList;
+    beforeCreate() {
+      this.$store.commit('fetchRecords');
+    }
     
     beautify(string: string) {
       const now = dayjs();
@@ -61,31 +62,40 @@
       // eslint-disable-next-line no-undef
       return (this.$store.state as RootState).recordList;
     }
-    //计算属性
+    
     get groupedList() {
       const {recordList} = this;
-      if (recordList.length === 0) {return [];}
-      const newList = _.cloneDeep(recordList).filter(r=>r.type === this.type).sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
-      type Result = {title:string,total?:number,items:RecordItem[]}[]
-      const result:Result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'),items: [newList[0]]}];
-      for (let i = 0; i < newList.length; i++) {
+      if (recordList.length === 0){return []as Result[]}
+      
+      const newList = _.clone(recordList)
+        .filter(item => item.type === this.type)
+      console.log(newList)
+      if(_.find(newList,'createdAt')=== undefined){
+        return [] as Result[]
+      }
+   
+      newList.sort((a, b) => dayjs(b.createdAt).valueOf() - dayjs(a.createdAt).valueOf());
+  
+      
+      type Result = { title: string, total?: number, items: RecordItem[] }[];
+      const result: Result = [{title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'), items: [newList[0]]}];
+      
+      for (let i = 1; i < newList.length; i++) {
         const current = newList[i];
         const last = result[result.length - 1];
-        if (dayjs(last.title).isSame(dayjs((current.createdAt), 'day'))) {
+        if (dayjs(last.title).isSame(dayjs(current.createdAt), 'day')) {
           last.items.push(current);
         } else {
-          result.push({title: dayjs(newList[0].createdAt).format('YYYY-MM-DD'),items: [current]});
+          result.push({title: dayjs(current.createdAt).format('YYYY-MM-DD'), items: [current]});
         }
       }
       result.map(group => {
-        group.total = group.items.reduce((sum,obj)=>sum+=obj.amount,0)
-      })
-      console.log(result);
+        group.total = group.items.reduce((sum, item) => {
+          return sum + item.amount;
+        }, 0);
+      });
       return result;
-    }
-    
-    beforeCreate() {
-      this.$store.commit('fetchRecords');
+      
     }
     
   }
@@ -99,6 +109,7 @@
     justify-content: space-between;
     align-content: center;
   }
+  
   .title {
     padding: 0 16px;
     @extend %item
